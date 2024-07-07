@@ -1,0 +1,174 @@
+<html>
+  <head>
+
+<script type="text/javascript" src="js/glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="js/webgl-utils.js"></script>
+<script id="shader-fs" type="x-shader/x-fragment">
+  #ifdef GL_ES
+  precision highp float;
+  #endif
+  varying vec2 vTexturaCoord;
+  uniform sampler2D uMuestra;
+  void main(void) {
+    gl_FragColor = texture2D(uMuestra, vec2(vTexturaCoord.s, vTexturaCoord.t));
+  }
+</script>
+<script id="shader-vs" type="x-shader/x-vertex">
+  attribute vec3 aVerticeP;
+  attribute vec2 aTexturaCoord;
+  uniform mat4 uMVMatriz;
+  uniform mat4 uPMatriz;
+  varying vec2 vTexturaCoord;
+  void main(void) {
+    gl_Position = uPMatriz * uMVMatriz * vec4(aVerticeP, 1.0);
+    vTexturaCoord = aTexturaCoord;
+  }
+</script>
+<script type="text/javascript" src="js/cWebGL.js"></script>
+<script type="text/javascript" src="js/cFigura.js"></script>
+<script type="text/javascript">
+
+var anguloBrazos = 0; // Ángulo inicial de los brazos
+var velocidadAnimacion = 1; // Velocidad de la animación (ajustable)
+
+// Función para actualizar la rotación según la tecla presionada
+function actualizarRotacion(e) {
+    if (e.key === 'a' || e.key === 'A') {
+        // Girar a la izquierda
+        efecto[2] -= 0.1; // Ajusta este valor según la velocidad de rotación deseada
+    } else if (e.key === 'd' || e.key === 'D') {
+        // Girar a la derecha
+        efecto[2] += 0.1; // Ajusta este valor según la velocidad de rotación deseada
+    }
+    // Redibujar la cabeza con el nuevo valor de rotación
+    cabeza();
+}
+
+// Agregar listener de teclado
+document.addEventListener('keydown', actualizarRotacion);
+
+// Función de dibujo de la cabeza (sin cambios)
+function cabeza() {
+    dibujarSolido(puntosSolido(cabezaFrente(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[0][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1] , 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+    dibujarSolido(puntosSolido(cabezaAtras(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[7][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1] , 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+    dibujarSolido(puntosSolido(cabezaArriba(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[7][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1], 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+    dibujarSolido(puntosSolido(cabezaAbajo(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[7][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1], 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+    dibujarSolido(puntosSolido(cabezaDerecha(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[7][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1], 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+    dibujarSolido(puntosSolido(cabezaIzquierda(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[7][control[0]], 0.8, 0.5, 1, control[4], efecto[4], control[1], efecto[1], 0, 1, 0, efecto[2], 1, 0, 0,efecto[7], 0, 1, 0);
+}
+
+function cuerpo(){
+  var movimientoBrazos = Math.sin(tiempo) * 1.5;
+	efecto[3]= efecto[1];
+  dibujarSolido(puntosSolido(verticeCuboFrente(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[2][control[0]], 0.8, 1, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+  dibujarSolido(puntosSolido(verticeCuboAtras(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[5][control[0]], 0.8, 1, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+  dibujarSolido(puntosSolido(verticeCuboArriba(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[1][control[0]], 0.8, 1, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+  dibujarSolido(puntosSolido(verticeCuboAbajo(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[6][control[0]], 0.8, 1, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+  dibujarSolido(puntosSolido(verticeCuboDerecha(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[3][control[0]], 0.8, 1, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+  dibujarSolido(puntosSolido(verticeCuboIzquierda(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[4][control[0]], 0.8,1 , 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 1, 0, 0);
+}
+function brazo(){
+  var desplazamiento = Math.sin(anguloBrazos) * 10;
+  var movimientoBrazos = Math.sin(tiempo) * 6; // Movimiento de caminata
+  efecto[3]= efecto[1];
+  dibujarSolido(puntosSolido(verticebrazoFrente(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAtras(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoArriba(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[12][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAbajo(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoDerecha(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoIzquierda(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + desplazamiento + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+}
+
+function brazo1(){
+  var movimientoBrazos = Math.sin(tiempo) * 6; // Movimiento de caminata
+  efecto[3]= efecto[1];
+  dibujarSolido(puntosSolido(verticebrazoFrente1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAtras1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoArriba1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[12][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAbajo1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoDerecha1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoIzquierda1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+}
+
+//brazo ATRAS-IZQUIERDA
+function brazo2(){
+  var movimientoBrazos = Math.sin(tiempo) * 3; // Movimiento de caminata
+  efecto[3]= efecto[1];
+  dibujarSolido(puntosSolido(verticebrazoFrente2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAtras2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoArriba2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[12][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAbajo2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoDerecha2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoIzquierda2(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3] + movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+}
+function brazo3(){
+  var movimientoBrazos = Math.sin(tiempo) * 3;
+  efecto[3]= efecto[1];
+  dibujarSolido(puntosSolido(verticebrazoFrente3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAtras3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoArriba3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[12][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoAbajo3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoDerecha3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticebrazoIzquierda3(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[11][control[0]], 0.8, 0.8, 1, control[4], -2, control[1], efecto[3]+ movimientoBrazos, 0, 1, 0, 0, 0, 0, 0);
+
+}
+
+function mundo(){
+  
+  dibujarSolido(puntosSolido(verticemundoAtras1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[13][control[0]], 0.8, 0.8, 1, 0, -3, -10, 0, 0, 0, 0, 0, 0, 0);
+  dibujarSolido(puntosSolido(verticemundoArriba1(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[14][control[0]], 0.8, 0.8, 1, 0, -3, -10, 0, 0, 0, 0, 0, 0, 0);
+  }
+
+
+  function arbol(){
+  
+  dibujarSolido(puntosSolido(verticearbol(), 3, 4), texturaSolido(texturaCuadrado1(), 2, 4), indiceSolido(indiceCuadrado(), 1, 6), solidoTextura[15][control[0]], 0.8, 0.8, 1, 0, -3, -10, 0, 0, 0, 0, 0, 0, 0);
+  
+  }
+// Llame a manejoKeys() en cada ciclo de animación
+function animar(){
+  cabeza();
+  manejoKeys();
+  brazo();
+  brazo1();
+  brazo2();
+  brazo3();
+  // Otras funciones de dibujo...
+
+  requestAnimationFrame(animar); // Continúa el bucle de animación
+}
+
+// Inicializa la animación
+animar();
+
+function dibujarEscena(){
+  gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatriz);
+  mundo();
+  arbol();
+  cabeza();
+  cuerpo();
+  brazo();
+  brazo1();
+  brazo2();
+  brazo3();
+}
+function ejecutarWebGL() {
+  var canvas = document.getElementById("leccion07-hombre");
+  iniciarGL(canvas);
+  iniciarShaders();
+  iniciartextura(30, "mario");
+  gl.clearColor(0, 0, 0, 1.0);
+  gl.enable(gl.DEPTH_TEST);
+  //... Para detectar las pulsaciones (presiona tecla y suelta)
+  document.onkeydown = manejoKeyAbajo;
+  document.onkeyup = manejoKeyArriba;
+  momento();
+}
+</script>
+</head>
+<body onload="ejecutarWebGL();">
+  <canvas id="leccion07-hombre" style="border: none;" width="1400" height="700"></canvas>
+</body>
+</html>
