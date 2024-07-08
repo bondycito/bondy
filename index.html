@@ -27,14 +27,14 @@
       <p>Estos son algunas de mis creaciones hechas en JS usando WebGL:</p>
       <p>
         <a href="vargasludeña.html" class="product-link">animacion piramide</a>
-        <p>
-        </p>
+      </p>
+      <p>
         <a href="bondy.html" class="product-link">GORILA QUE PUEDES MOVER</a>
       </p>
       <p>También puedo hacer dibujos:</p>
-      <div class="imag">
-        <a href="#"><img src="sprintrap.jpg" alt="foto de bondycito" class="product-img"width="200px" height="200px"></a>
-        <a href="#"><img src="pudgesito.jpg" alt="foto de bondycito" class="product-img"width="200px" height="200px"></a>
+      <div class="imag-container">
+        <a href="#"><img src="sprintrap.jpg" alt="foto de bondycito" class="product-img" width="200px" height="200px"></a>
+        <a href="#"><img src="pudgesito.jpg" alt="foto de bondycito" class="product-img" width="200px" height="200px"></a>
       </div>
       <p>Descárgate Dragon Ball Legends para jugar un rato:</p>
       <a href="https://play.google.com/store/apps/details?id=com.bandainamcoent.dblegends_ww&hl=es&gl=US" class="btn">Descargar Dragon Ball Legends</a>
@@ -56,25 +56,7 @@
 </body>
 </html>
 <style>
-.bondycito-img {
-           
-            width: 200px; /* Ancho fijo de 200 píxeles */
-            height: 200px; /* Altura automática para mantener la proporción */
-            display: block; /* Asegura que la imagen sea un bloque para controlar el tamaño */
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-        }
-        .bondycito-img:hover {
-            opacity: 0.8; /* Reduce la opacidad al pasar el ratón */
-        }
-
-
-
-
-
-
-  
-  body {
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -109,7 +91,7 @@
 
 .content {
   padding: 20px;
-  background-color: rgba(255, 255, 255, 255); /* Aquí se ajusta la opacidad */
+  background-color: rgba(255, 255, 255, 1);
   margin: 20px;
   border-radius: 10px;
 }
@@ -134,18 +116,24 @@
   text-decoration: underline;
 }
 
-.imag {
-  
-  width: 200px; /* Ancho fijo de 200 píxeles */
-  height: 200px; /* Altura automática para mantener la proporción */
-  display: block; /* Asegura que la imagen sea un bloque para controlar el tamaño */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  }
+.imag-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .product-img:hover {
-            opacity: 0.8; /* Reduce la opacidad al pasar el ratón */
-        }
-  
+  opacity: 0.8;
+}
+
 .btn {
   display: inline-block;
   margin-top: 10px;
@@ -167,4 +155,5 @@
 .tiktok-embed {
   margin: 20px auto;
 }
+
 </style>
