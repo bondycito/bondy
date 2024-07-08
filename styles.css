@@ -1,17 +1,150 @@
-* {
+*{
     margin: 0; 
     padding: 0;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-}
+ }
+ body{
+ 
+     font-family: sans-serif;
+ 
+ }
+ body{
+     background-image: url(vargas.jpg);
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;
+     background-repeat: no-repeat;
+ }
+ .head{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     height: 80px;
+     background: #171717;
+     position: fixed;
+     width: 100%;
+     z-index: 100;
+ }
+ .navbar{
+     display: flex;
+     margin-right: 10px;
+ }
+ .imag{
+     text-align: center;
+     display: flex; 
+ }
+ .imag a{
+     padding: 10px  20px;
+     height: 200px;
+ }
+ 
+ .navbar a {
+     display: block;
+     padding: 23px  20px;
+     color: #fff;
+     text-decoration: none;
+     text-transform: uppercase;
+     font-size: 20px;
+ 
+ }
+ .hola {
+     display: block;
+     padding: 23px  230px;
+     color: #fff;
+     text-decoration: none;
+     text-transform: uppercase;
+     font-size: 20px;
+     align-items: center;
+ 
+ }
+ .header{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ 
+ }
+ 
+ .title{
+     margin-bottom: 30px;
+     font-size: 40px;
+     font-weight: 600;
+     color: #fff;
+ }
+ 
+ .tex{
+     margin-top: -230px;
+ }
 
-body {
-    text-align: center;
-    font-family: sans-serif;
-    background-image: url(vargas.jpg);
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
+ .btn:hover{
+     background: none;
+     color: #fff;
+ }
+ .btn-home{
+     display: flex;
+ }
+ 
+ .btn-home a{
+     margin: 0 10px;
+ 
+ }
+
+ .content {
+     height: 50vh;
+     flex-direction: column;
+     justify-content: right;
+ 
+ }
+ .content div{
+     justify-content: right;
+ }
+ 
+ .sau h1{
+     padding: -100px 150px;
+ }
+ 
+ @media (max-width:768px){
+     .title{
+         margin-bottom: 0;
+         font-size: 40px;
+     }
+     
+     .sau{
+         height: 110vh;
+     }
+ 
+     .navbar{
+         display: none;
+     }
+ }
+
+
+@media screen and (max-width: 1350px){
+    main{
+        margin-top: 50px;  
+        justify-content: center;    
+    }
+    .caja_trasera{
+        margin: auto;
+        max-width: 270px;
+        height: 260px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .caja_trasera div{
+        margin: 0px;    
+        position: absolute;
+    }
+
+    .contenedor_inicio-registro{
+        top: -10px;
+        left: -5px;
+        align-items: center;
+        margin: auto;
+        
+    }
+    .contenedor_inicio-registro form{
+        position: relative;
+    }
 }
