@@ -1,73 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <link rel="stylesheet" href="styles.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INDUSTRIAS BONDYCITO</title>
+  <link rel="stylesheet" href="styles.css"> 
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      background-image: url(vargas.jpg);
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: #fff;
     }
     
-    h1 {
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .head .navbar img {
+      width: 45px;
+    }
+
+    .head .hola a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .content {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    .title {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .imag img {
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: 2px solid #9c27b0;
+      color: #fff;
+      text-decoration: none;
+      background: #9c27b0;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: none;
       color: #fff;
     }
-    h3 {
-      color: #fff;
-    }
-    h2 {
-      color: #fff;
-    }
-    p {
-      color: #fff;
+
+    @media (max-width: 768px) {
+      .head {
+        flex-direction: column;
+      }
+
+      .imag img {
+        width: 100%;
+        max-width: 200px;
+      }
     }
   </style>
 </head>
-</body>
-    <div class="head">
-      <nav class="navbar">
-        <a href="#"><img src="bondycito.jpg" alt="foto de bondycito" style="width: 45px"></a>
-      </nav>
+<body>
+  <div class="head">
+    <nav class="navbar">
+      <a href="#"><img src="bondycito.jpg" alt="foto de bondycito"></a>
+    </nav>
+    <nav class="hola">
+      <a>Esta es la página web del bondycito lindo, puedes registrarte o iniciar sesión</a>
+    </nav>
+  </div>
 
-     <nav class="hola">
-        <a> esta es la pagina web del bondycito lindo puedes registrarte o iniciar secion</a>
-      </nav>
+  <section class="content inicio_de_sesion">
+    <header class="content header">
+      <h1 class="title">INICIO</h1>
+      <p>Bienvenido a la página web del bondycito lindo</p>
+      <p>Esta es una página web para futuros videojuegos.</p>
+      <a href="#"><img src="" alt="foto de bondycito" style="width: 200px"></a>
+    </header>
+
+    <h1 class="title">PRODUCTOS</h1>
+    <p>Estos son algunas de mis creaciones hechas en JS usando WebGL:</p>
+    <p>
+      <a href="vargasludeña.html">Triángulo</a>
+      <a href="bondy.html">Triángulo</a>
+    </p>
+    <p>También puedo hacer dibujos:</p>
+    <div class="imag">
+      <a href="#"><img src="sprintrap.jpg" alt="foto de bondycito" style="width: 200px"></a>
+      <a href="#"><img src="pudgesito.jpg" alt="foto de bondycito" style="width: 250px"></a>
     </div>
+    <p>Descárgate Dragon Ball Legends para jugar un rato:</p>
+    <a href="https://play.google.com/store/apps/details?id=com.bandainamcoent.dblegends_ww&hl=es&gl=US" class="btn">Descargar Dragon Ball Legends</a>
+  </section>
 
+  <section class="content redessociales">
+    <h1 class="title">REDES SOCIALES</h1>
+    <p>Si quieres saber más de Dragon Ball Legends o eres nuevo en el juego, puedes ver alguno de mis videos de TikTok:</p>
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bondycito" data-unique-id="bondycito" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+      <section>
+        <a target="_blank" href="https://www.tiktok.com/@bondycito?refer=creator_embed">@bondycito</a>
+      </section>
+    </blockquote>
+    <script async src="https://www.tiktok.com/embed.js"></script>
+  </section>
 
-    <section class="content inicio_de_sesion">
-      <header class ="content header">
-        <h1 class = "title">INICIO</h1>
-        <p>Bienvenido a la pagina web del bondycito lindo</p>
-        <p> esta es una página web para futuros videojuegos.</p>
-        <a href="#"><img src="" alt="foto de bondycito" style="width: 200px"></a>
-        <div class ="btn-home">
-        </div>
-      </header>
-
-      <h1 class="title">PRODUCTOS</h1>
-      <p>
-        estos son algunas de mis creaciones echas en JS usando webGL
-        <a href="vargasludeña.html">triangulo</a>
-        <a href="bondy.html">triangulo</a>
-      </p>
-      <p>tambien puedo hacer dibujos</p>
-      <div class="imag">
-        <a href="#"><img src="sprintrap.jpg" alt="foto de bondycito" style="width: 200px"></a>
-        <a href="#"><img src="pudgesito.jpg" alt="foto de bondycito" style="width: 250px"></a>
-      </div>
-      <p>descargate dragon ball legends para jugar un rato</p>
-      <a href="https://play.google.com/store/apps/details?id=com.bandainamcoent.dblegends_ww&hl=es&gl=US" class ="btn">https://play.google.com/store/apps/details?id=com.bandainamcoent.dblegends_ww&hl=es&gl=US</a>
-      </div>
-
-    </section> 
-    <section class="content redessociales">
-      <h1 class="title">REDES SOCIALES</h1>
-
-      <p>si quieres saber mas de dragon ball legends o eres nuevo en el juego puedes ver alguno de mis videos de tik tok</p>
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bondycito" data-unique-id="bondycito" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@bondycito?refer=creator_embed">@bondycito</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-    </section> 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
